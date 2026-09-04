@@ -404,6 +404,7 @@ footer p{margin:0;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase
   }
   vids.forEach(function(v){ v.muted = true; v.setAttribute('muted',''); });
   vids.forEach(function(v){ if(v.preload !== 'none'){ wake(v); } });
+
   if('IntersectionObserver' in window){
     var vo = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -411,9 +412,25 @@ footer p{margin:0;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase
       });
     }, {threshold:.01, rootMargin:'600px 0px 600px 0px'});
     vids.forEach(function(v){ vo.observe(v); });
-  } else {
-    vids.forEach(wake);
   }
+
+  // Reserve som ikke er avhengig av IntersectionObserver: ren geometri ved scroll.
+  // Sikrer at klippene lastes selv om observatoeren ikke fyrer.
+  var ticking = false;
+  function sjekkNaerhet(){
+    ticking = false;
+    var h = window.innerHeight || 800;
+    vids.forEach(function(v){
+      var r = v.getBoundingClientRect();
+      if(r.bottom > -600 && r.top < h + 600){ wake(v); }
+      else if(v.dataset.woken && !v.paused){ v.pause(); }
+    });
+  }
+  function planlegg(){ if(!ticking){ ticking = true; requestAnimationFrame(sjekkNaerhet); } }
+  window.addEventListener('scroll', planlegg, {passive:true});
+  window.addEventListener('resize', planlegg, {passive:true});
+  window.addEventListener('pageshow', planlegg);
+  sjekkNaerhet();
   // iOS: start avspilling ved første berøring hvis autoplay ble blokkert
   document.addEventListener('touchstart', function(){
     vids.forEach(function(v){ if(v.dataset.woken){ tryPlay(v); } });
