@@ -1,319 +1,390 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>En gave til Arne &amp; Maria · VIVOOD</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>En gave til Arne &amp; Maria — Vivood, Guadalest</title>
+<meta name="description" content="En spaopplevelse på Vivood Landscape Hotel &amp; Spa i Guadalest-dalen, Spania.">
+<meta name="theme-color" content="#14100D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#100d0a; --espresso:#1a1510; --gold:#c6a15f; --brass:#b8935a;
-    --gold-soft:#e6d3ab; --ivory:#f2ecdf; --sand:#cbb99f; --mist:#a9a294; --sage:#8b9b7a;
-    --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",-apple-system,Segoe UI,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--ink);color:var(--ivory);font-family:var(--sans);font-weight:300;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-  img{display:block;max-width:100%}
-  .serif{font-family:var(--serif)}
-  .eyebrow{font-size:.7rem;letter-spacing:.44em;text-transform:uppercase;color:var(--gold);font-weight:400}
-  .wrap{max-width:1340px;margin:0 auto;padding:0 28px}
+:root{
+  --ink:#0C0908;
+  --espresso:#14100D;
+  --espresso-2:#1D1712;
+  --sand:#E4D9C6;
+  --sand-dim:#B9AC97;
+  --gold:#C7A15C;
+  --gold-soft:#E0C48A;
+  --serif:"Cormorant Garamond",Cormorant,Georgia,"Times New Roman",serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(1.4rem,5vw,5rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--sand);
+  font-family:var(--sans);font-weight:300;line-height:1.7;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit}
 
-  @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.16)}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-  @keyframes fadeIn{to{opacity:1}}
+/* ---------- typografi ---------- */
+.eyebrow{
+  font-family:var(--sans);font-weight:400;
+  font-size:clamp(.62rem,1.6vw,.74rem);
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 1.6rem;
+}
+.eyebrow.dim{color:var(--sand-dim)}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;letter-spacing:.01em;line-height:1.06}
+.display{font-size:clamp(3.1rem,13vw,10.5rem);letter-spacing:.14em;font-weight:300}
+h2{font-size:clamp(2.1rem,6.6vw,4.6rem)}
+.lede{font-size:clamp(1rem,2.3vw,1.22rem);color:var(--sand-dim);max-width:34ch;font-weight:300}
+.rule{width:1px;height:clamp(48px,9vh,96px);background:linear-gradient(180deg,transparent,var(--gold),transparent);margin:0 auto}
 
-  /* FULL-BLEED SCENE BASE */
-  .scene{position:relative;min-height:100svh;display:flex;overflow:hidden}
-  .scene .bg{position:absolute;inset:0;background:#000 center/cover no-repeat;animation:kb 28s ease-in-out infinite alternate}
-  .scene .veil{position:absolute;inset:0}
+/* ---------- intro ---------- */
+#intro{
+  position:fixed;inset:0;z-index:120;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:var(--pad);
+  transition:opacity 1.3s ease 0s, visibility 0s linear 1.3s;
+}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+#intro .bg{position:absolute;inset:0;background:url("clips/01.jpg") center/cover no-repeat;opacity:.22;animation:kb 26s ease-out both}
+#intro .veil{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(12,9,8,.55),rgba(12,9,8,.95))}
+#intro .inner{position:relative;z-index:2}
+.intro-lbl{font-size:clamp(.62rem,1.6vw,.72rem);letter-spacing:.5em;text-transform:uppercase;color:var(--sand-dim);margin:0 0 1.5rem}
+.intro-name{font-family:var(--serif);font-size:clamp(2.4rem,10vw,5.6rem);line-height:1.1;color:var(--sand);margin:0}
+.intro-sub{margin:1.6rem 0 0;font-size:clamp(.64rem,1.7vw,.76rem);letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.fade-seq>*{opacity:0;transform:translateY(14px);animation:rise 1.5s cubic-bezier(.16,.8,.3,1) forwards}
+.fade-seq>*:nth-child(1){animation-delay:.25s}
+.fade-seq>*:nth-child(2){animation-delay:.6s}
+.fade-seq>*:nth-child(3){animation-delay:1.05s}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.16)}}
 
-  /* filmstills i full opploesning som seksjonsbakgrunn */
-  .bgA{background-image:url("clips/bgA.jpg")}
-  .bgB{background-image:url("clips/bgB.jpg")}
-  .bgC{background-image:url("clips/bgC.jpg")}
-  .bgD{background-image:url("clips/bgD.jpg")}
-  .bgE{background-image:url("clips/bgE.jpg")}
+/* ---------- media-lag ---------- */
+.stage{position:relative;isolation:isolate;overflow:hidden}
+.media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.media video,.media .still{
+  position:absolute;top:50%;left:50%;width:100%;height:100%;
+  transform:translate(-50%,-50%);object-fit:cover;
+}
+.media .still{background-position:center;background-size:cover;background-repeat:no-repeat;
+  animation:kb 34s ease-out infinite alternate}
+.media video{animation:kbv 30s ease-out infinite alternate}
+@keyframes kbv{from{transform:translate(-50%,-50%) scale(1.02)}to{transform:translate(-50%,-50%) scale(1.12)}}
+.scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(12,9,8,.72) 0%,rgba(12,9,8,.30) 32%,rgba(12,9,8,.42) 62%,rgba(12,9,8,.90) 100%);}
+.scrim.left{background:
+  linear-gradient(100deg,rgba(12,9,8,.90) 0%,rgba(12,9,8,.62) 42%,rgba(12,9,8,.22) 78%),
+  linear-gradient(180deg,rgba(12,9,8,.55),rgba(12,9,8,.20) 40%,rgba(12,9,8,.85));}
+.grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.32;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");}
+.content{position:relative;z-index:3}
 
-  /* levende fullskjermsbakgrunn i intro/hero/sitat */
-  .scene .bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;animation:kb 34s ease-in-out infinite alternate;pointer-events:none}
-  .scene .bgvid.on{opacity:1}
+/* ---------- hero ---------- */
+#hero{min-height:100svh;display:flex;align-items:center;padding:calc(var(--pad) + 3rem) var(--pad)}
+#hero .content{width:100%;max-width:1180px;margin:0 auto;text-align:center}
+#hero .display{margin:.6rem 0 1.2rem;text-shadow:0 4px 60px rgba(0,0,0,.6)}
+.hero-tag{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.4vw,2rem);color:var(--sand);opacity:.92;margin:0}
+.hero-meta{margin-top:clamp(2rem,6vh,3.6rem);display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+.hero-meta p{margin:0;font-size:clamp(.62rem,1.7vw,.74rem);letter-spacing:.32em;text-transform:uppercase;color:var(--sand-dim)}
+.scroll-hint{position:absolute;left:50%;bottom:2.2rem;transform:translateX(-50%);z-index:4;
+  font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--sand-dim);opacity:.75;
+  display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.scroll-hint span.line{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--gold),transparent);animation:pulse 2.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
 
-  /* INTRO */
-  .intro{align-items:center;justify-content:center;text-align:center}
-  .intro .veil{background:radial-gradient(120% 90% at 50% 40%,rgba(16,13,10,.55),rgba(16,13,10,.9))}
-  .intro .in{position:relative;z-index:2;padding:24px}
-  .intro .l1{font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;color:var(--sand);opacity:0;animation:fadeUp 1.4s ease .3s forwards}
-  .intro .l2{font-family:var(--serif);font-size:clamp(2.8rem,10vw,6.4rem);line-height:1.02;margin:16px 0;color:var(--ivory);opacity:0;animation:fadeUp 1.6s ease 1s forwards}
-  .intro .l2 em{font-style:italic;color:var(--gold-soft)}
-  .intro .l3{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp 1.4s ease 1.9s forwards}
-  .intro .cue{position:absolute;bottom:36px;left:0;right:0;text-align:center;font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mist);opacity:0;animation:fadeIn 1.2s ease 2.8s forwards;z-index:2}
+/* ---------- manifest ---------- */
+#manifest{padding:clamp(6rem,18vh,12rem) var(--pad);min-height:78svh;display:flex;align-items:center}
+#manifest .content{max-width:820px;margin:0 auto;text-align:center}
+.manifest-lead{font-family:var(--serif);font-size:clamp(1.6rem,4.6vw,3rem);line-height:1.28;color:var(--sand);margin:0 0 1.8rem}
+.manifest-body{font-size:clamp(.98rem,2.2vw,1.16rem);color:var(--sand-dim);max-width:52ch;margin:0 auto}
 
-  /* HERO */
-  .hero{align-items:flex-end}
-  .hero .veil{background:linear-gradient(180deg,rgba(16,13,10,.35),rgba(16,13,10,.05) 34%,rgba(16,13,10,.94))}
-  .hero .in{position:relative;z-index:2;width:100%;padding-bottom:9vh}
-  .hero h1{font-family:var(--serif);font-size:clamp(3.6rem,15vw,10rem);line-height:.9;color:var(--ivory);font-weight:500;letter-spacing:.02em}
-  .hero .tag{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,3.4vw,1.7rem);color:var(--gold-soft);margin-top:6px}
-  .hero .sub{margin-top:16px;font-size:clamp(.72rem,2.2vw,.92rem);letter-spacing:.3em;text-transform:uppercase;color:var(--sand)}
-  .hero .names{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,4.4vw,1.8rem);color:var(--ivory)}
+/* ---------- kapitler ---------- */
+.chapter{min-height:100svh;display:flex;align-items:flex-end;padding:var(--pad);padding-bottom:clamp(3.5rem,12vh,7rem)}
+.chapter .content{width:100%;max-width:1180px;margin:0 auto}
+.panel{
+  max-width:min(560px,92vw);
+  padding:clamp(1.7rem,4.2vw,2.9rem);
+  background:linear-gradient(155deg,rgba(28,22,18,.62),rgba(12,9,8,.48));
+  border:1px solid rgba(199,161,92,.22);
+  border-radius:2px;
+  backdrop-filter:blur(14px) saturate(120%);
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.8);
+}
+.panel .num{display:block;font-family:var(--serif);font-size:clamp(2.2rem,6vw,3.2rem);
+  color:var(--gold);opacity:.55;line-height:1;margin-bottom:.7rem}
+.panel h2{margin:0 0 1rem;color:var(--sand)}
+.panel p{margin:0;font-size:clamp(.95rem,2.1vw,1.06rem);color:var(--sand-dim);max-width:46ch}
+.panel .kicker{font-size:.64rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin:0 0 .9rem}
+.chapter:nth-of-type(even) .content{display:flex;justify-content:flex-end}
 
-  /* MANIFESTO */
-  .manifesto{background:var(--espresso);padding:15vh 0;text-align:center}
-  .manifesto .lead{font-family:var(--serif);font-size:clamp(1.7rem,5vw,3rem);line-height:1.32;max-width:20ch;margin:18px auto 0}
-  .manifesto .lead em{font-style:italic;color:var(--gold)}
-  .manifesto .muted{color:var(--mist);max-width:52ch;margin:24px auto 0}
-  .manifesto .divider{width:1px;height:70px;background:linear-gradient(var(--gold),transparent);margin:40px auto 0}
+/* ---------- sitat ---------- */
+#quote{padding:clamp(7rem,20vh,13rem) var(--pad);display:flex;align-items:center;min-height:80svh}
+#quote .content{max-width:900px;margin:0 auto;text-align:center}
+blockquote{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(1.6rem,5vw,3.3rem);line-height:1.3;color:var(--sand)}
+.attrib{margin:2.2rem 0 0;font-size:.66rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
 
-  /* ELEMENT SCENE (filmstill-bakgrunn + glasspanel med video + tekst) */
-  .el{align-items:center;padding:9vh 0}
-  .el .veil{background:linear-gradient(90deg,rgba(16,13,10,.86),rgba(16,13,10,.5) 60%,rgba(16,13,10,.25))}
-  .el.rev .veil{background:linear-gradient(270deg,rgba(16,13,10,.86),rgba(16,13,10,.5) 60%,rgba(16,13,10,.25))}
-  .el .panel{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center}
-  .el.rev .panel .media{order:2}
-  .el .num{font-family:var(--serif);font-size:1rem;letter-spacing:.34em;color:var(--gold)}
-  .el h2{font-family:var(--serif);font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.02;margin:8px 0 6px;color:var(--ivory);font-weight:500}
-  .el h2 em{font-style:italic;color:var(--gold-soft)}
-  .el p{color:#d8d0c1;font-size:1.08rem;max-width:44ch;margin-top:14px}
-  .el .tag{margin-top:20px;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage)}
+/* ---------- gavekort ---------- */
+#gift{background:var(--espresso);padding:clamp(5rem,14vh,9rem) var(--pad);position:relative;overflow:hidden}
+#gift::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 60% at 50% 0%,rgba(199,161,92,.10),transparent 70%);pointer-events:none}
+.card{
+  position:relative;z-index:2;max-width:720px;margin:0 auto;
+  border:1px solid rgba(199,161,92,.34);border-radius:3px;
+  background:
+    linear-gradient(150deg,rgba(38,29,23,.96),rgba(20,16,13,.98));
+  padding:clamp(2.2rem,6vw,4.2rem);text-align:center;overflow:hidden;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(224,196,138,.14);
+}
+.card::after{
+  content:"";position:absolute;top:-60%;left:-120%;width:60%;height:260%;
+  background:linear-gradient(100deg,transparent,rgba(224,196,138,.16),rgba(255,255,255,.06),transparent);
+  transform:rotate(14deg);animation:sheen 7.5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes sheen{0%{left:-120%}55%{left:130%}100%{left:130%}}
+.card .frame{position:absolute;inset:10px;border:1px solid rgba(199,161,92,.16);border-radius:2px;pointer-events:none}
+.card .label{font-size:.66rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin:0 0 1.6rem}
+.card h2{font-size:clamp(1.9rem,5.4vw,3.2rem);margin:0 0 .6rem;color:var(--sand)}
+.card .to{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3vw,1.7rem);color:var(--gold-soft);margin:0 0 1.8rem}
+.card .divider{width:70px;height:1px;background:rgba(199,161,92,.5);margin:0 auto 1.8rem}
+.card p.body{margin:0 auto 2.4rem;color:var(--sand-dim);max-width:44ch;font-size:clamp(.95rem,2.1vw,1.06rem)}
+.btn{
+  display:inline-block;padding:1.05rem 2.5rem;border:1px solid var(--gold);
+  color:var(--gold-soft);text-decoration:none;font-size:.68rem;letter-spacing:.3em;
+  text-transform:uppercase;background:rgba(199,161,92,.06);
+  transition:background .45s ease,color .45s ease,letter-spacing .45s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--gold);color:#171009;letter-spacing:.36em}
 
-  .media{display:flex;justify-content:center}
-  .frame{position:relative;width:100%;border-radius:16px;overflow:hidden;background:#0b0907;border:1px solid rgba(198,161,95,.45);box-shadow:0 40px 90px -40px rgba(0,0,0,.95)}
-  .frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:16px;box-shadow:inset 0 0 60px rgba(0,0,0,.45)}
-  .frame video{width:100%;height:100%;display:block;object-fit:cover;background:#0b0907}
-  .frame.tall{max-width:520px}
+/* ---------- footer ---------- */
+footer{background:var(--ink);text-align:center;padding:clamp(3.5rem,9vh,6rem) var(--pad) clamp(3rem,8vh,5rem)}
+footer .mark{font-family:var(--serif);font-size:clamp(1.5rem,4.5vw,2.3rem);letter-spacing:.36em;color:var(--sand);margin:0 0 1rem}
+footer p{margin:0;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sand-dim)}
 
-  /* INTERSTITIAL QUOTE */
-  .quote{align-items:center;justify-content:center;text-align:center;min-height:82svh}
-  .quote .veil{background:rgba(16,13,10,.62)}
-  .quote .in{position:relative;z-index:2;padding:24px;max-width:900px}
-  .quote p{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,5vw,2.8rem);line-height:1.3;color:var(--ivory)}
-  .quote span{display:block;margin-top:18px;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.16,.8,.3,1),transform 1.2s cubic-bezier(.16,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
 
-  /* GAVEKORT */
-  .giftwrap{background:var(--espresso);text-align:center;padding:15vh 0}
-  .card{position:relative;max-width:660px;margin:34px auto 0;border-radius:20px;padding:54px 40px;background:linear-gradient(150deg,#1e1811,#0f0c09);border:1px solid rgba(198,161,95,.5);box-shadow:0 50px 120px -50px rgba(0,0,0,.95);overflow:hidden}
-  .card::before{content:"";position:absolute;top:-60%;left:-45%;width:60%;height:220%;background:linear-gradient(115deg,transparent,rgba(230,211,171,.16),transparent);transform:rotate(8deg);animation:sheen 7s ease-in-out infinite}
-  @keyframes sheen{0%,55%{left:-45%}100%{left:140%}}
-  .card .kort{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
-  .card h3{font-family:var(--serif);font-size:clamp(2.1rem,6.5vw,3.1rem);color:var(--ivory);margin:14px 0 6px;font-weight:500}
-  .card .to{font-family:var(--serif);font-style:italic;font-size:1.55rem;color:var(--gold-soft)}
-  .card .msg{color:var(--mist);margin:20px auto 0;font-size:1.04rem;max-width:44ch}
-  .card .line{width:56px;height:1px;background:var(--gold);margin:26px auto}
-  .cta{display:inline-flex;align-items:center;gap:.6em;margin-top:36px;padding:16px 42px;border:1px solid var(--gold);border-radius:999px;color:var(--ivory);text-decoration:none;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;transition:.35s}
-  .cta:hover{background:var(--gold);color:var(--ink)}
-
-  footer{text-align:center;padding:8vh 0 12vh;color:var(--mist)}
-  footer .serif{font-size:1.7rem;color:var(--ivory)}
-  footer small{display:block;margin-top:10px;letter-spacing:.26em;text-transform:uppercase;font-size:.64rem}
-
-  @media(max-width:880px){
-    .el .panel{grid-template-columns:1fr;gap:28px}
-    .el.rev .panel .media{order:0}
-    .el .veil,.el.rev .veil{background:linear-gradient(180deg,rgba(16,13,10,.55),rgba(16,13,10,.9))}
-    .frame.tall{max-width:none}
-    .el{padding:8vh 0}
-    /* full-bleed video paa mobil - vesentlig stoerre bilde */
-    .media{margin:0 -28px;width:calc(100% + 56px)}
-    .frame{border-radius:0;border-left:0;border-right:0}
-    .frame::after{border-radius:0}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .scene .bg,.scene .bgvid,.card::before{animation:none}
-  }
+@media (max-width:720px){
+  .chapter{align-items:flex-end}
+  .chapter:nth-of-type(even) .content{justify-content:flex-start}
+  .panel{max-width:100%}
+  .scrim{background:linear-gradient(180deg,rgba(12,9,8,.62) 0%,rgba(12,9,8,.25) 26%,rgba(12,9,8,.55) 58%,rgba(12,9,8,.95) 100%)}
+  .grain{opacity:.2}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 
 <!-- INTRO -->
-<section class="scene intro">
-  <div class="bg bgA"></div>
-  <video class="bgvid" data-bgvid muted loop playsinline webkit-playsinline preload="auto" autoplay poster="clips/bg-valley.jpg"><source src="clips/bg-valley.mp4" type="video/mp4"></video>
-  <div class="veil"></div>
-  <div class="in">
-    <div class="l1">En gave til</div>
-    <div class="l2 serif">Arne <em>&amp;</em> Maria</div>
-    <div class="l3">Vivood · Guadalest · Spania</div>
+<div id="intro">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="inner fade-seq">
+    <p class="intro-lbl">En gave til</p>
+    <h1 class="intro-name">Arne &amp; Maria</h1>
+    <p class="intro-sub">Vivood · Guadalest · Spania</p>
   </div>
-  <div class="cue">Bla ned ↓</div>
-</section>
+</div>
 
 <!-- HERO -->
-<header class="scene hero">
-  <div class="bg bgA"></div>
-  <video class="bgvid" data-bgvid muted loop playsinline webkit-playsinline preload="auto" autoplay poster="clips/bg-valley.jpg"><source src="clips/bg-valley.mp4" type="video/mp4"></video>
-  <div class="veil"></div>
-  <div class="wrap in">
-    <div class="eyebrow">En gaveopplevelse</div>
-    <h1>VIVOOD</h1>
-    <div class="tag">Luksusen ved å forsvinne</div>
-    <div class="sub">Spaopplevelse — Guadalest-dalen, Spania</div>
-    <div class="names">En gave til Arne &amp; Maria</div>
+<section id="hero" class="stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/01.jpg">
+      <source src="clips/01.mp4" type="video/mp4">
+    </video>
   </div>
-</header>
+  <div class="scrim"></div><div class="grain"></div>
+  <div class="content">
+    <p class="eyebrow">En gaveopplevelse</p>
+    <h1 class="display">VIVOOD</h1>
+    <p class="hero-tag">Luksusen ved å forsvinne</p>
+    <div class="hero-meta">
+      <div class="rule"></div>
+      <p>Spaopplevelse — Guadalest-dalen, Spania</p>
+      <p style="color:var(--gold)">En gave til Arne &amp; Maria</p>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Bla</span><span class="line"></span></div>
+</section>
 
-<!-- MANIFESTO -->
-<section class="manifesto">
-  <div class="wrap">
-    <div class="eyebrow">Deres reise</div>
-    <p class="lead serif">Dette er ikke bare et gavekort. Det er en <em>invitasjon til å puste ut.</em></p>
-    <p class="muted">Noen timer i et spa i en av Spanias vakreste daler — varme, vann og fullstendig ro, kun for dere to.</p>
-    <div class="divider"></div>
+<!-- MANIFEST -->
+<section id="manifest" class="stage">
+  <div class="media"><div class="still" style="background-image:url('clips/03.jpg');opacity:.30"></div></div>
+  <div class="scrim"></div><div class="grain"></div>
+  <div class="content reveal">
+    <p class="manifest-lead">Dette er ikke bare et gavekort.<br>Det er en invitasjon til å puste ut.</p>
+    <div class="rule" style="margin:2rem auto"></div>
+    <p class="manifest-body">Noen timer i et spa i en av Spanias vakreste daler — varme, vann og fullstendig ro, kun for dere to.</p>
   </div>
 </section>
 
-<!-- 01 -->
-<section class="scene el">
-  <div class="bg bgA"></div>
-  <div class="veil"></div>
-  <div class="wrap panel">
-    <div class="copy">
-      <div class="num">01</div>
-      <h2 class="serif">Mellom fjell <em>og himmel</em></h2>
+<!-- 01 STEDET -->
+<section class="chapter stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/02.jpg">
+      <source src="clips/02.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim left"></div><div class="grain"></div>
+  <div class="content">
+    <div class="panel reveal">
+      <span class="num">01</span>
+      <p class="kicker">Stedet</p>
+      <h2>Mellom fjell og himmel</h2>
       <p>Skjult i Guadalest-dalen, mellom eldgamle steiner og oliventrær, ligger Vivood — et sted som nesten smelter inn i landskapet. Langt fra byens støy begynner roen allerede ved ankomst.</p>
-      <div class="tag">Stedet</div>
     </div>
-    <div class="media"><div class="frame" style="aspect-ratio:16/9"><video class="clip" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="clips/01.jpg"><source src="clips/01.mp4" type="video/mp4"></video></div></div>
   </div>
 </section>
 
-<!-- 02 -->
-<section class="scene el rev">
-  <div class="bg bgB"></div>
-  <div class="veil"></div>
-  <div class="wrap panel">
-    <div class="copy">
-      <div class="num">02</div>
-      <h2 class="serif">Landsbyen <em>i fjellet</em></h2>
+<!-- 02 GUADALEST -->
+<section class="chapter stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/03.jpg">
+      <source src="clips/03.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim left"></div><div class="grain"></div>
+  <div class="content">
+    <div class="panel reveal">
+      <span class="num">02</span>
+      <p class="kicker">Guadalest</p>
+      <h2>Landsbyen i fjellet</h2>
       <p>Høyt oppe troner Guadalest, en eldgammel landsby festet til klippen. Utsikten over dalen og innsjøen tar pusten fra deg.</p>
-      <div class="tag">Guadalest</div>
     </div>
-    <div class="media"><div class="frame tall" style="aspect-ratio:4/5"><video class="clip" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="clips/02.jpg"><source src="clips/02.mp4" type="video/mp4"></video></div></div>
   </div>
 </section>
 
-<!-- QUOTE -->
-<section class="scene quote">
-  <div class="bg bgE"></div>
-  <video class="bgvid" data-bgvid muted loop playsinline webkit-playsinline preload="auto" autoplay poster="clips/bg-lake.jpg"><source src="clips/bg-lake.mp4" type="video/mp4"></video>
-  <div class="veil"></div>
-  <div class="in">
-    <p class="serif">«Der stillheten er så stor at man hører seg selv puste igjen.»</p>
-    <span>Guadalest-dalen</span>
+<!-- 03 INFINITY -->
+<section class="chapter stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/04.jpg">
+      <source src="clips/04.mp4" type="video/mp4">
+    </video>
   </div>
-</section>
-
-<!-- 03 -->
-<section class="scene el">
-  <div class="bg bgC"></div>
-  <div class="veil"></div>
-  <div class="wrap panel">
-    <div class="copy">
-      <div class="num">03</div>
-      <h2 class="serif">Der vannet møter <em>horisonten</em></h2>
+  <div class="scrim left"></div><div class="grain"></div>
+  <div class="content">
+    <div class="panel reveal">
+      <span class="num">03</span>
+      <p class="kicker">Infinity-bassenget</p>
+      <h2>Der vannet møter horisonten</h2>
       <p>To infinity-basseng i saltvann som flyter ut i intet. I skumringen farges vannet rosa og appelsin av solnedgangen.</p>
-      <div class="tag">Infinity-bassenget</div>
     </div>
-    <div class="media"><div class="frame" style="aspect-ratio:16/9"><video class="clip" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="clips/03.jpg"><source src="clips/03.mp4" type="video/mp4"></video></div></div>
   </div>
 </section>
 
-<!-- 04 -->
-<section class="scene el rev">
-  <div class="bg bgD"></div>
-  <div class="veil"></div>
-  <div class="wrap panel">
-    <div class="copy">
-      <div class="num">04</div>
-      <h2 class="serif">Ro, etter en <em>eldgammel kunst</em></h2>
+<!-- 04 SPA -->
+<section class="chapter stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/05.jpg">
+      <source src="clips/05.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim left"></div><div class="grain"></div>
+  <div class="content">
+    <div class="panel reveal">
+      <span class="num">04</span>
+      <p class="kicker">Spa &amp; ayurveda</p>
+      <h2>Ro, etter en eldgammel kunst</h2>
       <p>Et spa med vegger av glass mot fjellene, og et oppvarmet basseng innendørs. Behandlinger inspirert av ayurveda. Hodet blir stille.</p>
-      <div class="tag">Spa &amp; Ayurveda</div>
     </div>
-    <div class="media"><div class="frame" style="aspect-ratio:16/9"><video class="clip" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="clips/04.jpg"><source src="clips/04.mp4" type="video/mp4"></video></div></div>
   </div>
 </section>
 
-<!-- 05 -->
-<section class="scene el">
-  <div class="bg bgE"></div>
-  <div class="veil"></div>
-  <div class="wrap panel">
-    <div class="copy">
-      <div class="num">05</div>
-      <h2 class="serif">Tid til å <em>bare være</em></h2>
+<!-- 05 RO -->
+<section class="chapter stage">
+  <div class="media">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="clips/06.jpg">
+      <source src="clips/06.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim left"></div><div class="grain"></div>
+  <div class="content">
+    <div class="panel reveal">
+      <span class="num">05</span>
+      <p class="kicker">Ro</p>
+      <h2>Tid til å bare være</h2>
       <p>Til slutt, bare stillhet. Kjenne solen, høre vinden i dalen og puste helt ut. Noen timer, kun for dere to — det er den egentlige gaven.</p>
-      <div class="tag">Ro</div>
     </div>
-    <div class="media"><div class="frame tall" style="aspect-ratio:4/5"><video class="clip" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback poster="clips/05.jpg"><source src="clips/05.mp4" type="video/mp4"></video></div></div>
+  </div>
+</section>
+
+<!-- SITAT -->
+<section id="quote" class="stage">
+  <div class="media"><div class="still" style="background-image:url('clips/06.jpg');opacity:.26"></div></div>
+  <div class="scrim"></div><div class="grain"></div>
+  <div class="content reveal">
+    <blockquote>«Der stillheten er så stor at man hører seg selv puste igjen.»</blockquote>
+    <p class="attrib">Guadalest-dalen</p>
   </div>
 </section>
 
 <!-- GAVEKORT -->
-<section class="giftwrap">
-  <div class="wrap">
-    <div class="eyebrow">Deres gave</div>
-    <div class="card">
-      <div class="kort">Gavekort</div>
-      <h3 class="serif">En spaopplevelse på Vivood</h3>
-      <div class="to serif">Til Arne &amp; Maria</div>
-      <div class="line"></div>
-      <p class="msg">En spaopplevelse for to — noen timer med varme, vann og fullstendig ro, kun for dere. Pust ut og nyt hvert øyeblikk.</p>
-    </div>
-    <a class="cta" href="https://vivood.com/?partner=4005" target="_blank" rel="noopener">Utforsk Vivood →</a>
+<section id="gift">
+  <div class="card reveal">
+    <div class="frame"></div>
+    <p class="label">Gavekort</p>
+    <h2>En spaopplevelse på Vivood</h2>
+    <p class="to">Til Arne &amp; Maria</p>
+    <div class="divider"></div>
+    <p class="body">En spaopplevelse for to — noen timer med varme, vann og fullstendig ro, kun for dere. Pust ut og nyt hvert øyeblikk.</p>
+    <a class="btn" href="https://vivood.com/?partner=4005&amp;gad_source=1&amp;gad_campaignid=20158690208&amp;gbraid=0AAAAADg_QvonRvIxIECAcilR7W9YaQgXI" target="_blank" rel="noopener">Utforsk Vivood →</a>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="serif">Vivood</div>
-    <small>Landscape Hotel &amp; Spa · Guadalest, Spania</small>
-    <small style="color:var(--gold);margin-top:16px">Med kjærlighet — en opplevelse til dere begge</small>
-  </div>
+  <p class="mark">Vivood</p>
+  <p>Landscape Hotel &amp; Spa · Guadalest, Spania</p>
 </footer>
 
 <script>
 (function(){
-  var clips = [].slice.call(document.querySelectorAll('video.clip'));
-  var bgs   = [].slice.call(document.querySelectorAll('video[data-bgvid]'));
+  // Intro forsvinner
+  var intro = document.getElementById('intro');
+  function hideIntro(){ intro.classList.add('gone'); }
+  setTimeout(hideIntro, 3200);
+  window.addEventListener('wheel', hideIntro, {passive:true, once:true});
+  window.addEventListener('touchstart', hideIntro, {passive:true, once:true});
+  intro.addEventListener('click', hideIntro);
 
-  function play(v){
-    try{ v.muted = true; v.defaultMuted = true; }catch(e){}
-    var p = v.play();
-    if(p && p.catch){ p.catch(function(){}); }
-  }
-
-  /* Levende fullskjermsbakgrunn - egne 1080p-filer, tones inn naar de er klare */
-  bgs.forEach(function(v){
-    if(v.readyState >= 2){ v.classList.add('on'); }
-    v.addEventListener('loadeddata', function(){ v.classList.add('on'); }, {once:true});
-    play(v);
-  });
-
-  var all = clips.concat(bgs);
-
-  /* Start/pause ved scroll - ren ytelsesgevinst, autoplay virker uansett uten JS */
+  // Scroll-reveal
+  var revealables = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ play(en.target); }
-        else if(!en.target.paused){ en.target.pause(); }
-      });
-    }, {rootMargin:'250px 0px', threshold:0.05});
-    all.forEach(function(v){ io.observe(v); });
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+    }, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
+    revealables.forEach(function(el){ ro.observe(el); });
+  } else {
+    revealables.forEach(function(el){ el.classList.add('in'); });
   }
 
-  /* iOS lavstroemsmodus blokkerer autoplay - foerste beroering starter alt */
-  function kick(){
-    all.forEach(play);
-    document.removeEventListener('touchstart', kick);
-    document.removeEventListener('click', kick);
+  // Spill kun video som er i/nær viewport
+  var vids = document.querySelectorAll('video');
+  function tryPlay(v){ var p = v.play(); if(p && p.catch){ p.catch(function(){}); } }
+  vids.forEach(function(v){ v.muted = true; v.setAttribute('muted',''); tryPlay(v); });
+  if('IntersectionObserver' in window){
+    var vo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ tryPlay(e.target); } else { e.target.pause(); }
+      });
+    }, {threshold:.01, rootMargin:'150px 0px 150px 0px'});
+    vids.forEach(function(v){ vo.observe(v); });
   }
-  document.addEventListener('touchstart', kick, {passive:true});
-  document.addEventListener('click', kick, {passive:true});
+  // iOS: start avspilling ved første berøring hvis autoplay ble blokkert
+  document.addEventListener('touchstart', function(){ vids.forEach(tryPlay); }, {passive:true, once:true});
 })();
 </script>
-
 </body>
 </html>
