@@ -416,9 +416,9 @@ footer p{margin:0;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase
 
   // Reserve som ikke er avhengig av IntersectionObserver: ren geometri ved scroll.
   // Sikrer at klippene lastes selv om observatoeren ikke fyrer.
-  var ticking = false;
+  var sistSjekk = 0, plan = null;
   function sjekkNaerhet(){
-    ticking = false;
+    sistSjekk = Date.now();
     var h = window.innerHeight || 800;
     vids.forEach(function(v){
       var r = v.getBoundingClientRect();
@@ -426,7 +426,13 @@ footer p{margin:0;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase
       else if(v.dataset.woken && !v.paused){ v.pause(); }
     });
   }
-  function planlegg(){ if(!ticking){ ticking = true; requestAnimationFrame(sjekkNaerhet); } }
+  // Tidsbasert struping, ikke requestAnimationFrame: rAF staar stille naar siden
+  // ikke rendres (bakgrunnsfane, gjenopprettet fane), og da ville ingenting lastes.
+  function planlegg(){
+    var naa = Date.now();
+    if(naa - sistSjekk > 120){ sjekkNaerhet(); return; }
+    if(!plan){ plan = setTimeout(function(){ plan = null; sjekkNaerhet(); }, 120); }
+  }
   window.addEventListener('scroll', planlegg, {passive:true});
   window.addEventListener('resize', planlegg, {passive:true});
   window.addEventListener('pageshow', planlegg);
